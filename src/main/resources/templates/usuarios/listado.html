@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Usuarios</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div th:replace="~{fragments/menu :: menu}"></div>
+
+<h1>Gestión de Usuarios</h1>
+<p style="color: orange;">Esta sección solo es accesible para usuarios con rol ADMIN.</p>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Rol</th>
+        <th>Activo</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${usuarios}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.username}"></td>
+        <td th:text="${user.nombre}"></td>
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.rol}"></td>
+        <td th:text="${user.activo ? 'SÍ' : 'NO'}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

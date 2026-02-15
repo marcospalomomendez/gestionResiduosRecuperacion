@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Gestión Residuos</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div class="container">
+    <h2>Centro de Gestión de Residuos</h2>
+    <div th:if="${param.error}" class="alert alert-error">
+        Usuario o contraseña incorrectos.
+    </div>
+    <div th:if="${param.logout}" class="alert alert-success">
+        Has cerrado sesión correctamente.
+    </div>
+    <form th:action="@{/login}" method="post">
+        <div>
+            <label>Usuario:</label>
+            <input type="text" name="username" required autofocus>
+        </div>
+        <div>
+            <label>Contraseña:</label>
+            <input type="password" name="password" required>
+        </div>
+        <button type="submit">Iniciar sesión</button>
+    </form>
+</div>
+</body>
+</html>

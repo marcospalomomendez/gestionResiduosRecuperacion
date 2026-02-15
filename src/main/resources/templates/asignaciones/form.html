@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Nueva Asignación</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div th:replace="~{fragments/menu :: menu}"></div>
+
+<h1>Nueva Asignación</h1>
+<form th:action="@{/asignaciones/guardar}" method="post">
+    <div>
+        <label>Camión:</label>
+        <select name="camionId" required>
+            <option value="">-- Selecciona un camión --</option>
+            <option th:each="camion : ${camiones}"
+                    th:value="${camion.id}"
+                    th:text="${camion.matricula + ' - ' + camion.modelo}"></option>
+        </select>
+    </div>
+    <div>
+        <label>Ruta:</label>
+        <select name="rutaId" required>
+            <option value="">-- Selecciona una ruta --</option>
+            <option th:each="ruta : ${rutas}"
+                    th:value="${ruta.id}"
+                    th:text="${ruta.nombre + ' (' + ruta.zona + ') - ' + ruta.diaSemana}"></option>
+        </select>
+    </div>
+    <button type="submit">Guardar Asignación</button>
+    <a th:href="@{/asignaciones}">Cancelar</a>
+</form>
+</body>
+</html>

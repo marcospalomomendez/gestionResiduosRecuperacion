@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head></head>
+<body>
+<nav th:fragment="menu">
+    <div style="background-color: #f0f0f0; padding: 10px; margin-bottom: 20px;">
+        <span style="font-weight: bold;">Centro de Gestión de Residuos</span>
+        <span style="margin-left: 20px;">
+                <a th:href="@{/camiones}">Camiones</a> |
+                <a th:href="@{/rutas}">Rutas</a> |
+                <a th:href="@{/asignaciones}">Asignaciones</a> |
+                <a sec:authorize="hasRole('ADMIN')" th:href="@{/usuarios}">Usuarios</a> |
+                <span sec:authorize="isAuthenticated()">
+                    <form th:action="@{/logout}" method="post" style="display:inline;">
+                        <button type="submit" style="background:none; border:none; color:blue; text-decoration:underline; cursor:pointer;">Cerrar sesión</button>
+                    </form>
+                </span>
+            </span>
+    </div>
+</nav>
+</body>
+</html>

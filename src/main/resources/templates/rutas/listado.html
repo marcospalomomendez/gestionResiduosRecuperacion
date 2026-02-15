@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Rutas</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div th:replace="~{fragments/menu :: menu}"></div>
+
+<h1>Listado de Rutas</h1>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Zona</th>
+        <th>Día Semana</th>
+        <th>Hora Inicio</th>
+        <th>Hora Fin</th>
+        <th>Camiones Asignados</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="ruta : ${rutas}">
+        <td th:text="${ruta.id}"></td>
+        <td th:text="${ruta.nombre}"></td>
+        <td th:text="${ruta.zona}"></td>
+        <td th:text="${ruta.diaSemana}"></td>
+        <td th:text="${ruta.horaInicio}"></td>
+        <td th:text="${ruta.horaFin}"></td>
+        <td th:text="${ruta.asignaciones.size()}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

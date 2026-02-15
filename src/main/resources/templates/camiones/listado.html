@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Camiones</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div th:replace="~{fragments/menu :: menu}"></div>
+
+<h1>Listado de Camiones</h1>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Matrícula</th>
+        <th>Modelo</th>
+        <th>Capacidad (kg)</th>
+        <th>Estado</th>
+        <th>Fecha Alta</th>
+        <th>Rutas Asignadas</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="camion : ${camiones}">
+        <td th:text="${camion.id}"></td>
+        <td th:text="${camion.matricula}"></td>
+        <td th:text="${camion.modelo}"></td>
+        <td th:text="${camion.capacidadKg}"></td>
+        <td th:text="${camion.estadoCamion}"></td>
+        <td th:text="${camion.fechaAlta}"></td>
+        <td th:text="${camion.asignaciones.size()}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Asignaciones</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div th:replace="~{fragments/menu :: menu}"></div>
+
+<h1>Listado de Asignaciones</h1>
+<a sec:authorize="hasAnyRole('ADMIN','COORDINADOR')" th:href="@{/asignaciones/nueva}">➕ Nueva Asignación</a>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Camión</th>
+        <th>Ruta</th>
+        <th>Fecha Asignación</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="asig : ${asignaciones}">
+        <td th:text="${asig.id}"></td>
+        <td th:text="${asig.camion.matricula + ' - ' + asig.camion.modelo}"></td>
+        <td th:text="${asig.ruta.nombre + ' (' + asig.ruta.zona + ')'}"></td>
+        <td th:text="${asig.fechaAsignacion}"></td>
+        <td>
+            <a sec:authorize="hasAnyRole('ADMIN','COORDINADOR')"
+               th:href="@{/asignaciones/eliminar/{id}(id=${asig.id})}"
+               onclick="return confirm('¿Eliminar asignación?')">🗑️ Eliminar</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
